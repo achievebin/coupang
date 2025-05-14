@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>회원정보 수정</title>
+</head>
+<style>
+    body {
+        background-color: #f5f6f7;
+        justify-content: center;
+        padding: 50px;
+    }
+
+    table {
+        background-color: #fff;
+        width: 700px;
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    td {
+        border: 1px solid #eee;
+        padding: 15px;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    h2 {
+        margin: 1;
+        font-size: 30px;
+        color: #333;
+    }
+
+    button {
+        padding: 8px 14px;
+        background-color: #0074e9;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    button:hover {
+        background-color: #005dc3;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 6px 10px;
+        width: 60%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    #btn-box {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        width: 700px;
+    }
+
+    #secession {
+        background-color: #888;
+        font-size: 12px;
+        margin-right: 10px;
+    }
+
+    #secession:hover {
+        background-color: #666;
+    }
+    #exit {
+        background-color: #0074e9;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 14px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+  </style>
+<body>
+    <table>
+        <tr>
+            <td colspan="2" style="text-align: center;"><h2>회원정보 수정</h2></td>
+        </tr>
+        <tr>
+            <td>아이디(이메일)</td>
+            <td><button id="email">이메일 변경</button></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><button id="name">개명하셨다면? 이름변경 ></button></td>
+        </tr>
+        <tr>
+            <td>휴대폰 번호</td>
+            <td><button id="pn">휴대폰 번호 변경</button></td>
+        </tr>
+        <tr>
+            <td rowspan="4">비밀번호 변경</td>
+            <td>현재 비밀번호 <input id="nowpw" type="password" /></td>
+        </tr>
+        <tr>
+            <td>새 비밀번호 <input id="newpw" type="password" /></td>
+        </tr>
+        <tr>
+            <td>비밀번호 다시 입력 <input id="repw" type="password" /></td>
+        </tr>
+        <tr>
+            <td><button id="btnpw">비밀번호 변경</button></td>
+        </tr>
+        <tr>
+            <td>배송지</td>
+            <td>배송지 주소 관리는 [배송지 관리]에서 수정, 등록 합니다.</td>
+        </tr>
+        <tr>
+            <td rowspan="2">수신설정</td>
+            <td><input type="checkbox" />마케팅 목적의 개인정보 수집 및 이용 동의함 25.05.14</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" />광고성 정보 수신 동의함 25.02.16</td>
+        </tr>
+    </table>
+        <div id="btn-box">
+            <button id="secession">회원탈퇴</button>
+            <button id="exit">나가기</button>
+        </div>
+</body>
+</html>
+<script>
+    const nowpw = document.querySelector("#nowpw");
+    const newpw = document.querySelector("#newpw");
+    const repw = document.querySelector("#repw");
+    const btnpw = document.querySelector("#btnpw");
+    const secession = document.querySelector("#secession");
+
+    window.localStorage.setItem("nowpw", "123");
+
+    btnpw.addEventListener("click", function () {
+        const pw = localStorage.getItem("nowpw");
+            if (nowpw.value === pw && newpw.value === repw.value) {
+            localStorage.setItem("nowpw", newpw.value);
+            alert("비밀번호가 성공적으로 변경 되었습니다.");
+            nowpw.value = "";
+            newpw.value = "";
+            repw.value = "";
+        } else {
+            alert("현재 비밀번호가 틀리거나, 새 비밀번호가 일치하지 않습니다.");
+        }
+    });
+        secession.addEventListener('click',function(){
+            alert("정말 탈퇴 하시겠습니까?")
+        })
+</script>
