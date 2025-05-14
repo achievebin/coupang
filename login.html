@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>쿠팡 로그인</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 50px 40px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 35px;
+      font-weight: 500;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #0074e9;
+    }
+
+    .save-id {
+      font-size: 13px;
+      color: #555;
+      margin: -10px 0 20px;
+    }
+
+    .save-id input {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background-color: #0074e9;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #005fc1;
+    }
+
+    .helper-links {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+
+    .helper-links a {
+      color: #0074e9;
+      text-decoration: none;
+    }
+
+    .helper-links a:hover {
+      text-decoration: underline;
+    }
+
+    .signup-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #f1f3f5;
+      color: #333;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-btn:hover {
+      background-color: #e6e6e6;
+    }
+
+    /* 로고 느낌 */
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 120px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <img src="https://static.coupangcdn.com/image/coupang/common/logo_coupang_w350.png" alt="쿠팡 로고" />
+    </div>
+    <h2>로그인</h2>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">이메일 또는 휴대폰 번호</label>
+        <input type="text" id="username" name="username" placeholder="example@coupang.com" />
+      </div>
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" placeholder="비밀번호 입력" />
+      </div>
+      <div class="save-id">
+        <input type="checkbox" id="save-id" />
+        <label for="save-id">아이디 저장</label>
+      </div>
+      <button type="submit" class="login-btn">로그인</button>
+    </form>
+
+    <div class="helper-links">
+      <a href="#">비밀번호 찾기</a>
+    </div>
+
+    <button class="signup-btn" onclick="location.href='C:\Users\3CLASS_011\Documents\GitHub\coupangregister.html'">회원가입</button>
+
+  </div>
+
+  <script>
+    // 아이디 저장 기능
+    window.onload = function () {
+      const savedId = localStorage.getItem('savedId');
+      if (savedId) {
+        document.getElementById('username').value = savedId;
+        document.getElementById('save-id').checked = true;
+      }
+    };
+
+    // 로그인 검증 기능
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const enteredId = document.getElementById("username").value;
+      const enteredPw = document.getElementById("password").value;
+      const saveIdChecked = document.getElementById("save-id").checked;
+
+      const storedEmail = localStorage.getItem("userEmail");
+      const storedPhone = localStorage.getItem("userPhone");
+      const storedPw = localStorage.getItem("userPassword");
+
+      const idMatches = (enteredId === storedEmail || enteredId === storedPhone);
+      const pwMatches = (enteredPw === storedPw);
+
+      if (saveIdChecked) {
+        localStorage.setItem('savedId', enteredId);
+      } else {
+        localStorage.removeItem('savedId');
+      }
+
+      if (idMatches && pwMatches) {
+        alert("로그인 성공! 환영합니다.");
+        // 로그인 성공 시 이동할 페이지
+        // location.href = "main.html";
+      } else {
+        alert("로그인 실패! 아이디 또는 비밀번호를 확인하세요.");
+      }
+    });
+  </script>
+</body>
+</html>
