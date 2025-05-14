@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        height: 100px;
+        width: 100px;
+    }
+</style>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <input id="input" type="text">
+                <a href="./search.html">
+                    <button id="button">검색</button>
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
+<script>
+    // const arr1 = ["커피1", "커피2", "빵1", "빵2"]; // 배열이 아닌 객체로 변경해야 함
+
+    var item = {
+        product: [{
+            name: "커피1",
+            price: 1000
+        },
+        {
+            name: "커피2",
+            price: 1500
+        },
+        {
+            name: "빵1",
+            price: 2500
+        },
+        {
+            name: "빵2",
+            price: 3500
+        },
+        ]
+    };
+
+    // console.log(arr.product[0].name);
+
+    const body = document.querySelector("body");
+    const input = document.querySelector("#input");
+    const button = document.querySelector("#button");
+
+    var names = item.product.map(function (arr) {
+        return arr.name;
+    });
+    var prices = item.product.map(function (arr) {
+        return arr.price;
+    });
+
+    // console.log(names);
+    // console.log(prices);
+
+    // window.localStorage.setItem("name", JSON.stringify(arr1));
+
+    window.localStorage.setItem("name", JSON.stringify(names));
+    window.localStorage.setItem("price", JSON.stringify(prices));
+
+    button.addEventListener("click", function () {
+        window.sessionStorage.setItem("search", input.value);
+    });
+
+    // button.addEventListener("click", function () { // 버튼 누르면 출력
+    const arr2 = JSON.parse(window.localStorage.getItem("name"));
+    // console.log(arr2.filter((value) => value.includes(input.value)));
+    // if (input.value != "") { // 페이지 이동 미적용시 사용
+    if (window.sessionStorage.getItem("search")) { // search 값이 "" 일때는 false 값이 반환돼서 가능
+        for (let i = 0; i < arr2.length; i++) {
+            /* if (arr2.filter((value) => value.includes(input.value)) == arr2[i]) { : input값과 완전히 동일한 값만 출력 */
+            if (arr2[i].includes(window.sessionStorage.getItem("search"))) {
+                const text = document.createElement("text");
+                text.textContent = arr2[i];
+                body.appendChild(text);
+            }
+        }
+    }
+    // }
+    // });
+
+</script>
