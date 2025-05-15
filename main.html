@@ -1,67 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
 </head>
 <body>
     <div id="container">
         <header>
             <section id="inputarea">
-                <div>
+                <div class="search-form-wrap">
                     <span class="logo">
                     <!-- 쿠팡 로고 -->
                     <a>
-                        <img alt="쿠팡로고">
+                        <img src="./images/logo_coupang_w350.png" alt="쿠팡로고">
                     </a>
                     </span>
-                </div>
-                <div class="searchbar">
-                    <form>
-                        <fieldset>
-                            <legend>상품검색</legend>
-                            <div class="select-category"></div>
-                            <select id="selectCategories"></select>
-                        </fieldset>
-                        <a href="" id="hearderSearchBtn" class="search" title="검색">검색</a>
-                    </form>
-                </div>
-                <ul id="iconmenu">
-                    <li class="my-coupang">
-                        <a href="">
-                            <span class="my-coupang-icon">
-                                <img alt="사람 아이콘">
-                            </span>
-                            <span class="my-coupang-title">마이쿠팡</span>
-                        </a>
-                        <p class="my-coupang-menu">
-                            <span class="wrapper"></span>
-                        </p>
-                    </li>
-                    <li class="cart">
-                        <a href="">
-                            <span class="cart-icon">
-                                <img alt="카트 아이콘">
-                            </span>
-                            <span>장바구니</span>
-                            <em>0</em>
-                        </a>
-                        <div id="mycart-preview">
-                            <span class="wrapper">
-                                <i class="speech-icon"></i>
-                                <ul class="mycart-preview-products">
-                                        <li class="empty-cart">장바구니에 담긴 상품이 없습니다.</li>
-                                </ul>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-                <!-- iconmenu 영역 끝 -->
+                    <!-- logo 영역 끝 -->
+                    <div class="searchbar">
+                        <form>
+                            <fieldset>
+                                <legend>상품검색</legend>
+                                <div class="select-category"></div>
+                                <select id="selectCategories"></select>
+                                <input type="text" placeholder="찾고 싶은 상품을 검색해보세요!">
+                            </fieldset>
+                            <a href="./search.html" id="hearderSearchBtn" class="search" title="검색">검색</a>
+                        </form>
+                    </div>
+                    <!-- serchBar 영역 끝 -->
+                    <ul id="iconmenu">
+                        <li class="my-coupang">
+                            <a href="./mypage.html">
+                                <span class="my-coupang-icon">
+                                    <img src="./images/8666609_user_icon.png">
+                                </span>
+                                <span class="my-coupang-title">마이쿠팡</span>
+                            </a>
+                            <p class="my-coupang-menu">
+                                <span class="wrapper"></span>
+                            </p>
+                        </li>
+                        <li class="cart">
+                            <a href="">
+                                <span class="cart-icon">
+                                    <img src="./images/326700_cart_shopping_icon.png">
+                                </span>
+                                <span>장바구니</span>
+                                <em class="badge">0</em>
+                            </a>
+                            <div id="my-cart-preview" style="display: none;">
+                                <span class="wrapper">
+                                    <i class="speech-icon"></i>
+                                    <ul class="mycart-preview-products">
+                                            <li class="empty-cart">장바구니에 담긴 상품이 없습니다.</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- iconmenu 영역 끝 -->
+                    <div id="scrollMenuContainer">
+                        <div class="menuBtnLeft">◀</div>
+                        <ul class="scrollMenu">
+                            <li>쿠팡플레이</li>
+                            <li>로켓배송</li>
+                            <li>로켓프레시</li>
+                            <li>다시 구매</li>
+                            <li>쿠팡비즈</li>
+                            <li>로켓직구</li>
+                            <li>골드박스</li>
+                            <li>이달의신상</li>
+                            <li>판매자특가</li>
+                        </ul>
+                        <div class="menuBtnRight">▶</div>
+                    </div>
+                    <!-- scrollMenuContainer 영역 끝-->
+                </div> 
             </section>
+            <div class="categoryBtn">
+                <a>카테고리</a>
+            </div>
         </header>
-
-        <footer></footer>
+        <article class="top-bar">
+            <section>
+                <menu id="headerMenu">
+                    <li id="login" class="log">
+                        <a href="./login.html">로그인</a>
+                    </li>
+                    <li id="join" class="join">
+                        <a href="./register.html">회원가입</a>
+                    </li>
+                    <li id="cs" class="cs">
+                        고객센터
+                    </li>
+                    <li id="vendorLogin" class="sellerLog">
+                        판매자 가입
+                    </li>
+                </menu>
+                <menu id="subscribeMenu">
+                    <li>
+                        <a class="bookmark">즐겨찾기</a>
+                    </li>
+                    <li>
+                        <a class="dropdown_menu">입점신청</a>
+                    </li>
+                </menu>
+            </section>
+        </article>
+        <section id="contents" class="contents">
+            <div id="todatDiscoveryUnit" class="reach-ratio-wrap">
+                <div class="main-section">
+                    <h2>오늘의 발견</h2>
+                    <div class="discovery-list">
+                        <ul class="banner-list">
+                            <li class="list0">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list1">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list2">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list3">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list4">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list5">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list6">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list7">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list8">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                            <li class="list9">
+                                <a>
+                                    <img src="./images/istockphoto-placeholder.jpg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="layer1">
+                <a>회사소개</a>
+                <a>Investor Relations</a>
+                <a>인재채용</a>
+                <a>입점/제휴문의</a>
+                <a>공지사항</a>
+                <a>고객의 소리</a>
+                <a>이용약관관</a>
+                <a>개인정보처리방침</a>
+                <a>쿠팡페이 이용약관</a>
+            </div>
+            <div class="layer2">
+                <span></span>
+                <div></div>
+            </div>
+            <div class="layer3">
+                <div></div>
+            </div>
+            <div class="layer4">
+                <div class="cppyright">
+                    <p class="info"></p>
+                    <ul class="sns"></ul>
+                </div>
+            </div>
+        </footer>
     <div>
 </body>
 </html>
