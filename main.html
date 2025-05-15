@@ -4,61 +4,260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* 전체 레이아웃 기본 */
+        body {
+        margin: 0;
+        padding: 0;
+        }
+
+        /* top-bar는 고정 위치 */
+        .top-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        background: #f0f0f0;
+        z-index: 3;
+        }
+
+        /* top-bar 내부 section은 좌우 정렬 및 가로 배치 */
+        .top-bar > section {
+        display: flex;
+        justify-content: space-between; /* 좌우 끝에 배치 */
+        align-items: center;            /* 세로 가운데 정렬 */
+        width: 980px;
+        margin: 0 auto;
+        font-size: 11px;
+        }
+
+        /* top-bar 내 ul 또는 menu를 가로 정렬 및 리스트 스타일 제거 */
+        #headerMenu, #subscribeMenu {
+          display: flex; /* 가로 배치 */
+        list-style: none; /* 점 또는 번호 제거 */
+        padding: 0;
+        margin: 0;
+        }
+
+        /* top-bar 내 li는 가로 정렬을 위해 inline-block 또는 flex 사용 가능 */
+        #headerMenu li, #subscribeMenu li {
+        list-style: none; /* 리스트 스타일 제거 */
+        margin-right: 12px; /* 간격 조정 */
+        }
+
+        /* header 영역은 top-bar 아래에 위치 */
+        header {
+        margin-top: 32px; /* top-bar 높이만큼 아래로 */
+        position: relative;
+        width: 100%;
+        }
+
+        /* search-form-wrap는 좌우 정렬, 내부 요소 배치 */
+        .search-form-wrap {
+        display: flex;
+        justify-content: space-between; /* 좌우 끝에 배치 */
+        align-items: center;
+        width: 980px;
+        margin: 0 auto;
+        padding: 10px 0;
+        position: relative; /* 자식 absolute 위치 조정 가능 */
+        }
+
+        /* 좌측: logo 영역 */
+        .search-form-wrap .logo {
+        display: flex;
+        align-items: center;
+        }
+
+        /* 검색창 영역 */
+        .searchbar {
+        display: flex;
+        align-items: center;
+        }
+
+        /* iconmenu는 우측에 위치, 내부 a는 세로 배치 */
+        #iconmenu {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        /* iconmenu 내부 a는 세로로 쌓이도록 */
+        #iconmenu a {
+        display: flex;
+        flex-direction: column; /* 세로 배치 */
+        align-items: center;    /* 가운데 정렬 */
+        text-decoration: none;    /* 필요시 제거 */
+        color: inherit;           /* 부모 색상 상속 */
+        }
+
+        /* 이미지와 텍스트 사이 간격 */
+        #iconmenu a span img {
+        display: block;
+        margin-bottom: 4px; /* 이미지와 텍스트 간격 */
+        }
+
+        /* categoryBtn은 search-form-wrap 좌측에 위치 */
+        .categoryBtn {
+        position: absolute;
+        top: 32px; /* top-bar 높이 아래에 위치 */
+        left: 0;
+        width: 110px;
+        height: 115px;
+        background-position: 0 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        /* categoryBtn 내부 a 스타일 */
+        .categoryBtn a {
+        display: block;
+        margin-top: 73px;
+          color: #fff;
+          font-size: 13px;
+        }
+
+        /* a 내부의 span과 텍스트를 세로로 쌓이게 하는 CSS */
+        /* a 태그를 인라인 블록 또는 flex로 변경해서 크기 조절 */
+        #iconmenu a {
+        display: inline-flex; /* 또는 inline-block */
+        flex-direction: column; /* 세로 배치 */
+        align-items: center;    /* 가운데 정렬 */
+        text-decoration: none;
+        color: inherit;
+        /* 필요시 크기 조절 */
+        padding: 0; /* 또는 적절한 패딩 */
+        }
+
+        /* span 내부 이미지 스타일 (필요시) */
+        /* 이미지 크기를 제한하거나, a 태그 크기를 이미지에 맞게 조절 */
+        #iconmenu a span img {
+        display: block;
+        margin-bottom: 4px; /* 이미지와 텍스트 간격 */
+        max-width: 100px; /* 필요시 크기 제한 */
+        height: auto;
+        }
+
+        /* em에 속한 숫자(0)를 우상단 붉은 원 안에 표시하는 스타일 */
+        a .badge {
+        position: absolute; /* 부모 위치 기준 */
+        top: -5px;          /* 위치 조정 */
+        right: -5px;
+         width: 20px;
+         height: 20px;
+        background-color: red; /* 붉은 원 배경 */
+        color: white;
+        font-size: 12px;
+        border-radius: 50%; /* 원 모양 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        z-index: 10;
+        }
+
+        /* 부모 a에 position: relative; 필요 */
+        a {
+            position: relative;
+        }
+
+        /* 말풍선 기본 숨김 */
+        .my-cart-preview {
+         position: absolute;
+         top: 100%; /* 또는 적절한 위치 조정 */
+         right: 0;
+         margin-top: 8px;
+         width: 250px; /* 적당한 너비 */
+         background: #fff;
+         border: 1px solid #ccc;
+         border-radius: 8px;
+         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+         padding: 10px;
+         display: none; /* 기본 숨김 */
+         z-index: 100;
+        }
+
+        /* 말풍선 삼각형 (말풍선 꼬리) */
+        .my-cart-preview::after {
+        content: "";
+         position: absolute;
+         top: -10px; /* 말풍선 위쪽 위치 */
+        right: 20px; /* 위치 조정 */
+         border-width: 10px;
+         border-style: solid;
+        border-color: transparent transparent #fff transparent;
+        }
+
+        /* 마우스 오버 시 보여주기 */
+        li.cart:hover .my-cart-preview {
+         display: block;
+        }
+    </style>
 </head>
 <body>
     <div id="container">
         <header>
             <section id="inputarea">
-                <div>
+                <div class="search-form-wrap">
                     <span class="logo">
                     <!-- 쿠팡 로고 -->
                     <a>
-                        <img alt="쿠팡로고">
+                        <img src="./images/logo_coupang_w350.png" alt="쿠팡로고">
                     </a>
                     </span>
-                </div>
-                <div class="searchbar">
-                    <form>
-                        <fieldset>
-                            <legend>상품검색</legend>
-                            <div class="select-category"></div>
-                            <select id="selectCategories"></select>
-                        </fieldset>
-                        <a href="" id="hearderSearchBtn" class="search" title="검색">검색</a>
-                    </form>
-                </div>
-                <ul id="iconmenu">
-                    <li class="my-coupang">
-                        <a href="">
-                            <span class="my-coupang-icon">
-                                <img alt="사람 아이콘">
-                            </span>
-                            <span class="my-coupang-title">마이쿠팡</span>
-                        </a>
-                        <p class="my-coupang-menu">
-                            <span class="wrapper"></span>
-                        </p>
-                    </li>
-                    <li class="cart">
-                        <a href="">
-                            <span class="cart-icon">
-                                <img alt="카트 아이콘">
-                            </span>
-                            <span>장바구니</span>
-                            <em>0</em>
-                        </a>
-                        <div id="mycart-preview">
-                            <span class="wrapper">
-                                <i class="speech-icon"></i>
-                                <ul class="mycart-preview-products">
-                                        <li class="empty-cart">장바구니에 담긴 상품이 없습니다.</li>
-                                </ul>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-                <!-- iconmenu 영역 끝 -->
+                    <!-- logo 영역 끝 -->
+                    <div class="searchbar">
+                        <form>
+                            <fieldset>
+                                <legend>상품검색</legend>
+                                <div class="select-category"></div>
+                                <select id="selectCategories"></select>
+                                <input>
+                            </fieldset>
+                            <a href="" id="hearderSearchBtn" class="search" title="검색">검색</a>
+                        </form>
+                    </div>
+                    <!-- serchBar 영역 끝 -->
+                    <ul id="iconmenu">
+                        <li class="my-coupang">
+                            <a href="">
+                                <span class="my-coupang-icon">
+                                    <img src="./images/8666609_user_icon.png">
+                                </span>
+                                <span class="my-coupang-title">마이쿠팡</span>
+                            </a>
+                            <p class="my-coupang-menu">
+                                <span class="wrapper"></span>
+                            </p>
+                        </li>
+                        <li class="cart">
+                            <a href="">
+                                <span class="cart-icon">
+                                    <img src="./images/326700_cart_shopping_icon.png">
+                                </span>
+                                <span>장바구니</span>
+                                <em class="badge">0</em>
+                            </a>
+                            <div id="mycart-preview" style="display: none;">
+                                <span class="wrapper">
+                                    <i class="speech-icon"></i>
+                                    <ul class="mycart-preview-products">
+                                            <li class="empty-cart">장바구니에 담긴 상품이 없습니다.</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- iconmenu 영역 끝 -->
+                </div> 
             </section>
+            <div class="categoryBtn">
+                <a>카테고리</a>
+            </div>
         </header>
         <article class="top-bar">
             <section>
@@ -70,13 +269,22 @@
                         <a href="./register.html">회원가입</a>
                     </li>
                 </menu>
-                <menu id="subscribeMenu"></menu>
+                <menu id="subscribeMenu">
+                    <li>
+                        <a class="bookmark">즐겨찾기</a>
+                    </li>
+                    <li>
+                        <a class="dropdown_menu">입점신청</a>
+                    </li>
+                </menu>
             </section>
         </article>
         <section id="contents" class="contents">
-            
+
         </section>
-        <footer></footer>
+        <footer>
+
+        </footer>
     <div>
 </body>
 </html>
