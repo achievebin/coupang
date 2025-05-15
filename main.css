@@ -58,7 +58,7 @@ header {
 }
 
 /* 좌측: logo 영역 */
-    .search-form-wrap .logo {
+.search-form-wrap .logo {
     display: flex;
     align-items: center;
 }
@@ -78,7 +78,7 @@ header {
     margin: 0;
 }
 
-        /* categoryBtn은 search-form-wrap 좌측에 위치 */
+/* categoryBtn은 search-form-wrap 좌측에 위치 */
 .categoryBtn {
     position: absolute;
     top: 32px; /* top-bar 높이 아래에 위치 */
@@ -210,3 +210,43 @@ li.cart:hover .my-cart-preview {
 #scrollMenuContainer .menuBtnRight {
     right: 0;
 }
+
+.discovery-list {
+    display: grid;
+    grid-template-areas:
+    "list0 list1"
+    "list2 list3 list4 list5"
+    "list6 list7 list8";
+}
+.banner-list {
+    list-style: none;
+}
+
+.list0 {
+    grid-area: list0;
+}
+.list1 {
+    grid-area: list1;
+}
+.list2 {
+    grid-area: list2;
+}
+.list3 {
+    grid-area: list3;
+}
+.list4 {
+    grid-area: list4;
+}
+.list5 {
+    grid-area: list5;
+}
+.list6 {
+    grid-area: list6;
+}
+.list7 {
+    grid-area: list7;
+}
+.list8 {
+    grid-area: list8;
+}
+
