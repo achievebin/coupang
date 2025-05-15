@@ -1,11 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="shortcut icon" href="#">
+    <title>쿠팡 상품 상세 페이지</title>
 </head>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Noto Sans KR', sans-serif;
+        background-color: #f6f6f6;
+    }
+
+    header {
+        background-color: #0078ff;
+        color: white;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .product-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 8px;
+        gap: 2rem;
+    }
+
+    .product-image {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .product-details {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .product-price {
+        font-size: 1.8rem;
+        color: #d10000;
+        font-weight: bold;
+    }
+
+    .product-delivery {
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .action-buttons button {
+        flex: 1;
+        padding: 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .buy-btn {
+        background-color: #ff6000;
+        color: white;
+    }
+
+    .cart-btn {
+        background-color: #ffd400;
+        color: black;
+    }
+
+    .product-tabs {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+    }
+
+    .tab-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .tab-content {
+        line-height: 1.6;
+        color: #333;
+    }
+</style>
+
 <body>
-    
+
+    <header>
+        쿠팡 상품 상세
+    </header>
+
+    <div class="product-container">
+        <div class="product-image">
+            <img src="https://via.placeholder.com/400x400?text=Coffee+Product" alt="커피 상품 이미지">
+        </div>
+        <div class="product-details">
+            <div id="product-name" class="product-title"></div>
+            <div id="product-price" class="product-price"></div>
+            <div class="product-delivery">내일(수) 도착 보장 | 로켓배송</div>
+            <div class="action-buttons">
+                <button class="buy-btn">구매하기</button>
+                <button class="cart-btn">장바구니 담기</button>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
+
+<script>
+    const body = document.querySelector("body");
+
+    const product = window.sessionStorage.getItem("product");
+    const price = window.sessionStorage.getItem("p_price");
+
+    const p_name = document.createElement("text");
+    const p_price = document.createElement("text");
+    const li = document.createElement("li");
+
+    p_name.textContent = product;
+    p_price.textContent = price;
+
+    document.getElementById("product-name").innerHTML = `<div id="product-name" class="product-title">${p_name.textContent}</div>`;
+    document.getElementById("product-price").innerHTML = `<div id="product-name" class="product-title">${p_price.textContent}원</div>`;
+
+</script>
