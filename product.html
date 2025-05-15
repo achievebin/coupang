@@ -125,9 +125,11 @@
         <div class="product-details">
             <div id="product-name" class="product-title"></div>
             <div id="product-price" class="product-price"></div>
-            <div class="product-delivery">내일(수) 도착 보장 | 로켓배송</div>
+            <div class="product-delivery">내일 도착 보장 | 로켓배송</div>
             <div class="action-buttons">
-                <button class="buy-btn">구매하기</button>
+                <a href="./checkout.html">
+                    <button id="checkout" class="buy-btn">구매하기</button>
+                </a>
                 <button class="cart-btn">장바구니 담기</button>
             </div>
         </div>
@@ -138,6 +140,7 @@
 
 <script>
     const body = document.querySelector("body");
+    const checkout = document.querySelector("#checkout");
 
     const product = window.sessionStorage.getItem("product");
     const price = window.sessionStorage.getItem("p_price");
@@ -151,5 +154,4 @@
 
     document.getElementById("product-name").innerHTML = `<div id="product-name" class="product-title">${p_name.textContent}</div>`;
     document.getElementById("product-price").innerHTML = `<div id="product-name" class="product-title">${p_price.textContent}원</div>`;
-
 </script>
