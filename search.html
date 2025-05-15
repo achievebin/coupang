@@ -3,94 +3,177 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="#">
-    <title>Document</title>
+    <title>커피 검색 결과</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background: #f8f8f8;
+        }
+
+        header {
+            background-color: #0078ff;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+        }
+
+        .sort-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sort-bar button {
+            padding: 0.5rem 1rem;
+            background-color: #eee;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            color: #d10000;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<style>
-    img {
-        height: 100px;
-        width: 100px;
-    }
-</style>
 
 <body>
-    <table>
-        <tr>
-            <td>
-                <input id="input" type="text">
-                <a href="./search.html">
-                    <button id="button">검색</button>
-                </a>
-            </td>
-        </tr>
-    </table>
+
+    <header>
+        <div style="text-align: center;">
+            쿠팡 검색
+            <input id="input" type="text" size="100px" style="padding: 7px">
+            <a href="./search.html">
+                <button id="s_btn">검색</button>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sort-bar">
+            <button>추천순</button>
+            <button>낮은 가격순</button>
+            <button>높은 가격순</button>
+            <button>리뷰 많은순</button>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <!-- 스크립트에서 생성 -->
+        </div>
+    </div>
+
 </body>
 
 </html>
 <script>
-    // const arr1 = ["커피1", "커피2", "빵1", "빵2"]; // 배열이 아닌 객체로 변경해야 함
+    var product = [{
+        name: "커피1",
+        price: 1000,
+        img: "https://via.placeholder.com/200x200?text=Coffee+1"
+    },
+    {
+        name: "커피2",
+        price: 1500,
+        img: "https://via.placeholder.com/200x200?text=Coffee+2"
+    },
+    {
+        name: "빵1",
+        price: 2500,
+        img: "https://via.placeholder.com/200x200?text=Bread+1"
+    },
+    {
+        name: "빵2",
+        price: 3500,
+        img: "https://via.placeholder.com/200x200?text=Bread+2"
 
-    var item = {
-        product: [{
-            name: "커피1",
-            price: 1000
-        },
-        {
-            name: "커피2",
-            price: 1500
-        },
-        {
-            name: "빵1",
-            price: 2500
-        },
-        {
-            name: "빵2",
-            price: 3500
-        },
-        ]
-    };
-
-    // console.log(arr.product[0].name);
+    },
+    ]
 
     const body = document.querySelector("body");
     const input = document.querySelector("#input");
-    const button = document.querySelector("#button");
+    const s_btn = document.querySelector("#s_btn");
+    const grid = document.getElementById('productGrid');
 
-    var names = item.product.map(function (arr) {
-        return arr.name;
-    });
-    var prices = item.product.map(function (arr) {
-        return arr.price;
+    var datas = product.map(function (arr) {
+        return arr;
     });
 
-    // console.log(names);
-    // console.log(prices);
+    window.localStorage.setItem("datas", JSON.stringify(datas));
 
-    // window.localStorage.setItem("name", JSON.stringify(arr1));
-
-    window.localStorage.setItem("name", JSON.stringify(names));
-    window.localStorage.setItem("price", JSON.stringify(prices));
-
-    button.addEventListener("click", function () {
+    s_btn.addEventListener("click", function () {
         window.sessionStorage.setItem("search", input.value);
     });
 
-    // button.addEventListener("click", function () { // 버튼 누르면 출력
-    const arr2 = JSON.parse(window.localStorage.getItem("name"));
-    // console.log(arr2.filter((value) => value.includes(input.value)));
-    // if (input.value != "") { // 페이지 이동 미적용시 사용
-    if (window.sessionStorage.getItem("search")) { // search 값이 "" 일때는 false 값이 반환돼서 가능
-        for (let i = 0; i < arr2.length; i++) {
-            /* if (arr2.filter((value) => value.includes(input.value)) == arr2[i]) { : input값과 완전히 동일한 값만 출력 */
-            if (arr2[i].includes(window.sessionStorage.getItem("search"))) {
-                const text = document.createElement("text");
-                text.textContent = arr2[i];
-                body.appendChild(text);
+    const data_arr = JSON.parse(window.localStorage.getItem("datas"));
+
+    if (window.sessionStorage.getItem("search")) {
+        for (let i = 0; i < data_arr.length; i++) {
+            if (data_arr[i].name.includes(window.sessionStorage.getItem("search"))) {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                                    <img src="${data_arr[i].img}" alt="${data_arr[i].name}">
+                                    <div class="product-info">
+                                    <div class="product-name">${data_arr[i].name}</div>
+                                    <div class="product-price">${data_arr[i].price}</div>
+                                    </div>
+                                `;
+                card.addEventListener("click", function () {
+                    window.sessionStorage.setItem("product", data_arr[i].name);
+                    window.sessionStorage.setItem("p_price", data_arr[i].price);
+                    window.open("./product.html");
+                });
+                grid.appendChild(card);
             }
         }
     }
-    // }
-    // });
 
 </script>
