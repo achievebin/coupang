@@ -13,20 +13,25 @@
                 <div class="search-form-wrap">
                     <span class="logo">
                     <!-- 쿠팡 로고 -->
-                    <a>
+                    <a href="./main.html">
                         <img src="./images/logo_coupang_w350.png" alt="쿠팡로고">
                     </a>
                     </span>
                     <!-- logo 영역 끝 -->
                     <div class="searchbar">
-                        <form>
+                        <!-- 검색 폼 영역 -->
+                        <form id="searchForm">
                             <fieldset>
                                 <legend>상품검색</legend>
                                 <div class="select-category"></div>
-                                <select id="selectCategories"></select>
-                                <input type="text" placeholder="찾고 싶은 상품을 검색해보세요!">
+                                <select id="selectCategories">
+                                    <option value="">전체 카테고리</option>
+                                    <option value="electronics">가전제품</option>
+                                    <option value="fashion">패션의류</option>
+                                </select>
+                                <input type="text" id="searchInput" placeholder="찾고 싶은 상품을 검색해보세요!">
                             </fieldset>
-                            <a href="./search.html" id="hearderSearchBtn" class="search" title="검색">검색</a>
+                            <button type="submit" class="search" title="검색">검색</button>
                         </form>
                     </div>
                     <!-- serchBar 영역 끝 -->
@@ -61,7 +66,7 @@
                         </li>
                     </ul>
                     <!-- iconmenu 영역 끝 -->
-                    <div id="scrollMenuContainer">
+                    <div id="scrollMenuContainer" role="navigation">
                         <div class="menuBtnLeft">◀</div>
                         <ul class="scrollMenu">
                             <li>쿠팡플레이</li>
@@ -80,12 +85,21 @@
                 </div> 
             </section>
             <div class="categoryBtn">
-                <a>카테고리</a>
+                <button id="categoryToggleBtn">카테고리</button>
             </div>
+            <nav id="categoryMenu" style="display: none;">
+                <ul>
+                    <li><a href="#" onclick="event.preventDefault();">가전제품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">패션의류</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">식품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">뷰티</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">도서</a></li>
+                </ul>
+            </nav>
         </header>
         <article class="top-bar">
             <section>
-                <menu id="headerMenu">
+                <ul id="headerMenu">
                     <li id="login" class="log">
                         <a href="./login.html">로그인</a>
                     </li>
@@ -98,71 +112,66 @@
                     <li id="vendorLogin" class="sellerLog">
                         판매자 가입
                     </li>
-                </menu>
-                <menu id="subscribeMenu">
+                </ul>
+                <ul id="subscribeMenu">
                     <li>
                         <a class="bookmark">즐겨찾기</a>
                     </li>
                     <li>
                         <a class="dropdown_menu">입점신청</a>
                     </li>
-                </menu>
+                </ul>
             </section>
         </article>
         <section id="contents" class="contents">
-            <div id="todatDiscoveryUnit" class="reach-ratio-wrap">
+            <div id="todayDiscoveryUnit" class="reach-ratio-wrap">
                 <div class="main-section">
                     <h2>오늘의 발견</h2>
                     <div class="discovery-list">
                         <ul class="banner-list">
-                            <li class="list0">
+                            <li class="discovery-item-0">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지1">
                                 </a>
                             </li>
-                            <li class="list1">
+                            <li class="discovery-item-1">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지2">
                                 </a>
                             </li>
-                            <li class="list2">
+                            <li class="discovery-item-2">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지3">
                                 </a>
                             </li>
-                            <li class="list3">
+                            <li class="discovery-item-3">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지4">
                                 </a>
                             </li>
-                            <li class="list4">
+                            <li class="discovery-item-4">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지5">
                                 </a>
                             </li>
-                            <li class="list5">
+                            <li class="discovery-item-5">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지6">
                                 </a>
                             </li>
-                            <li class="list6">
+                            <li class="discovery-item-6">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지7">
                                 </a>
                             </li>
-                            <li class="list7">
+                            <li class="discovery-item-7">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지8">
                                 </a>
                             </li>
-                            <li class="list8">
+                            <li class="discovery-item-8">
                                 <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
-                                </a>
-                            </li>
-                            <li class="list9">
-                                <a>
-                                    <img src="./images/istockphoto-placeholder.jpg">
+                                    <img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지9">
                                 </a>
                             </li>
                         </ul>
@@ -178,7 +187,7 @@
                 <a>입점/제휴문의</a>
                 <a>공지사항</a>
                 <a>고객의 소리</a>
-                <a>이용약관관</a>
+                <a>이용약관</a>
                 <a>개인정보처리방침</a>
                 <a>쿠팡페이 이용약관</a>
             </div>
@@ -190,12 +199,13 @@
                 <div></div>
             </div>
             <div class="layer4">
-                <div class="cppyright">
+                <div class="copyright">
                     <p class="info"></p>
                     <ul class="sns"></ul>
                 </div>
             </div>
         </footer>
-    <div>
+    </div>
+    <script src="./main.js"></script>
 </body>
 </html>
