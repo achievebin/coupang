@@ -142,7 +142,11 @@
 
 <script>
 
-    var cart = [];
+    if (window.localStorage.getItem("cart") == null) {
+        cart = [];
+    } else {
+        var cart = JSON.parse(window.localStorage.getItem("cart"));
+    }
 
     const body = document.querySelector("body");
     const checkout = document.querySelector("#checkout");
@@ -155,10 +159,6 @@
     const p_name = document.createElement("text");
     const p_price = document.createElement("text");
     const li = document.createElement("li");
-
-    var carts = cart.map(function (arr) {
-        return arr;
-    });
 
     cartBtn.addEventListener("click", function () {
 
@@ -174,11 +174,7 @@
 
         cart.push(add);
 
-        var carts = cart.map(function (arr) {
-            return arr;
-        });
-
-        window.localStorage.setItem("cart", JSON.stringify(carts));
+        window.localStorage.setItem("cart", JSON.stringify(cart));
         alert(`장바구니에 ${add.name} 이(가) 추가되었습니다`);
 
         console.log(cart);
