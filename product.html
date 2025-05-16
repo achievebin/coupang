@@ -141,8 +141,12 @@
 </html>
 
 <script>
+
+    var cart = [];
+
     const body = document.querySelector("body");
     const checkout = document.querySelector("#checkout");
+    const cartBtn = document.querySelector(".cart-btn");
 
     const product = window.sessionStorage.getItem("product");
     const price = window.sessionStorage.getItem("p_price");
@@ -152,7 +156,36 @@
     const p_price = document.createElement("text");
     const li = document.createElement("li");
 
+    var carts = cart.map(function (arr) {
+        return arr;
+    });
+
+    cartBtn.addEventListener("click", function () {
+
+        const add = {
+            name: "",
+            price: 0,
+            img: ""
+        }
+
+        add.name = product;
+        add.price = Number(price);
+        add.img = img;
+
+        cart.push(add);
+
+        var carts = cart.map(function (arr) {
+            return arr;
+        });
+
+        window.localStorage.setItem("cart", JSON.stringify(carts));
+        alert(`장바구니에 ${add.name} 이(가) 추가되었습니다`);
+
+        console.log(cart);
+    });
+
     document.getElementById("product-name").textContent = product;
     document.getElementById("product-price").textContent = price + "원";
     document.getElementById("product-img").src = img;
+
 </script>
