@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="#">
+  <title>쿠팡 결제 화면</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f6f6f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0078ff;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .input-group label {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .input-group input,
+    .input-group select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .order-summary {
+      background-color: #f8f8f8;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .total {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 1rem;
+    }
+
+    .pay-button {
+      width: 100%;
+      padding: 1rem;
+      background-color: #ff6000;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .pay-button:hover {
+      background-color: #e55200;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    쿠팡 결제
+  </header>
+
+  <div class="container">
+    <div class="section">
+      <h2>배송지 정보</h2>
+      <div class="input-group">
+        <label>받는 사람</label>
+        <input type="text" placeholder="홍길동">
+      </div>
+      <div class="input-group">
+        <label>연락처</label>
+        <input type="tel" placeholder="010-1234-5678">
+      </div>
+      <div class="input-group">
+        <label>주소</label>
+        <input type="text" placeholder="ㅇㅇ시 ㅇㅇ동 123">
+      </div>
+      <div class="input-group">
+        <label>배송 메모</label>
+        <input type="text" placeholder="문 앞에 놔주세요">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>결제 수단</h2>
+      <div class="input-group">
+        <label>결제 방법 선택</label>
+        <select>
+          <option>신용카드</option>
+          <option>카카오페이</option>
+          <option>토스</option>
+          <option>휴대폰 결제</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>주문 상품</h2>
+      <div class="order-summary">
+        <div class="order-item">
+          <span id="product-name"></span>
+          <span id="product-price"></span>
+        </div>
+        <div class="order-item">
+          <span>배송비</span>
+          <span>3000원</span>
+        </div>
+        <div id="product-total" class="total"></div>
+      </div>
+    </div>
+
+    <a href="./complete.html">
+      <button id="pay-button" class="pay-button"></button>
+    </a>
+  </div>
+
+</body>
+
+</html>
+<script>
+  const product = window.sessionStorage.getItem("product");
+  const price = window.sessionStorage.getItem("p_price");
+
+  const pay = document.querySelector("#pay-button");
+
+  const delivery_cost = 3000;
+  const pay_total = Number(delivery_cost) + Number(price);
+
+  document.getElementById("product-name").innerHTML = `<span id="product-name">${product}</span>`;
+  document.getElementById("product-price").innerHTML = `<span id="product-price">${price}원</span>`;
+  document.getElementById("product-total").innerHTML = `<div id="product-total" class="total">${pay_total}원</div>`;
+  document.getElementById("pay-button").innerHTML = `<button id="pay-button" class="pay-button">${pay_total}원 결제하기</button>`;
+
+  window.sessionStorage.setItem("pay_total",pay_total);
+
+  // console.log(document.getElementById("product-total").innerText);
+
+</script>

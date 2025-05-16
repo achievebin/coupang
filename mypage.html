@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,6 +10,7 @@
         background-color: #f5f6f7;
         justify-content: center;
         padding: 50px;
+        align-items: center;
     }
 
     table {
@@ -17,7 +18,7 @@
         width: 700px;
         border: 1px solid #ddd;
         border-collapse: collapse;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 10px rgba(17, 0, 255, 0.1);
     }
 
     td {
@@ -85,6 +86,12 @@
         font-size: 13px;
         cursor: pointer;
     }
+    #exit:hover {
+        background-color: #005dc3;
+    }
+    #email{
+        margin-left: 20px;
+    }
   </style>
 <body>
     <table>
@@ -93,7 +100,16 @@
         </tr>
         <tr>
             <td>아이디(이메일)</td>
-            <td><button id="email">이메일 변경</button></td>
+            <td>
+                <div style="display: flex;">
+                    <div id="nowemail" style="margin-top: 6px;"></div>
+                    <button id="email">이메일 변경</button>
+                </div>
+                <div style="display: flex;">
+                    <div id="newemailin1"></div>
+                    <div id="newemailbtn"></div>
+                </div>
+            </td>
         </tr>
         <tr>
             <td>이름</td>
@@ -140,13 +156,20 @@
     const repw = document.querySelector("#repw");
     const btnpw = document.querySelector("#btnpw");
     const secession = document.querySelector("#secession");
+    const exit = document.querySelector("#exit");
 
-    window.localStorage.setItem("nowpw", "123");
+    // window.sessionStorage.setItem("email","mmm1212@naver.com");
+    
+    const nowemail = document.querySelector("#nowemail");
+    const email1 = sessionStorage.getItem("email");
+    nowemail.textContent = email1;
+
+    window.sessionStorage.setItem("nowpw", "123");
 
     btnpw.addEventListener("click", function () {
-        const pw = localStorage.getItem("nowpw");
+        const pw = sessionStorage.getItem("nowpw");
             if (nowpw.value === pw && newpw.value === repw.value) {
-            localStorage.setItem("nowpw", newpw.value);
+            sessionStorage.setItem("nowpw", newpw.value);
             alert("비밀번호가 성공적으로 변경 되었습니다.");
             nowpw.value = "";
             newpw.value = "";
@@ -155,7 +178,74 @@
             alert("현재 비밀번호가 틀리거나, 새 비밀번호가 일치하지 않습니다.");
         }
     });
-        secession.addEventListener('click',function(){
-            alert("정말 탈퇴 하시겠습니까?")
+
+    const email = document.querySelector("#email");
+    const newemailin1 = document.querySelector("#newemailin1");
+    const newemailbtn = document.querySelector("#newemailbtn");
+
+    email.addEventListener('click',function(){
+        const input = document.createElement("input");
+        const ebtn = document.createElement("button");
+        input.type = "text"
+        input.id = "newemail"
+        input.style = "width: 200px; margin: 10px;"
+        ebtn.id = "newemailbtn1"
+        ebtn.innerText = "이메일 변경";
+        ebtn.style = "margin-top: 9px; width: 78px; font-size: 10px"
+        newemailin1.appendChild(input)
+        newemailbtn.appendChild(ebtn)
+        ebtn.addEventListener('click',function(){
+            const newemail = document.querySelector("#newemail");
+            const result = confirm("진행하시겠습니까");
+            if(result === true){
+                const email1 = sessionStorage.getItem("email");
+                if(email1 === "정보가 없습니다."){
+                    alert("먼저 가입을 진행해주세요.")
+                }
+                else{
+                    sessionStorage.setItem("email",input.value);
+                    alert("이메일이 변경되었습니다.");
+                    const email1 = sessionStorage.getItem("email");
+                    nowemail.textContent = email1;
+                    input.value = "";
+                }
+                
+            }
+            else if (result === false){
+                alert("취소되었습니다.");
+                input.value = "";
+            }
+            
         })
+        if(email.innerText === "이메일 변경"){
+            email.innerText = "이메일 변경 취소"
+        }
+        else{
+            email.innerText = "이메일 변경"
+            newemailin1.innerHTML = "";
+            newemailbtn.innerHTML = "";
+        }
+    })
+    secession.addEventListener('click',function(){
+        const seceresult = confirm("정말 탈퇴하시겠습니까?");
+        if(seceresult === true){
+            const reresult = prompt("진행하시려면 '동의합니다'를 입력해주세요.")
+            if(reresult === "동의합니다"){
+                sessionStorage.removeItem("email");
+                alert("탈퇴했습니다.");
+                const email1 = sessionStorage.getItem("email");
+                nowemail.textContent = "정보가 없습니다.";
+            }
+            else if(reresult === null){
+                alert("취소했습니다.");
+            }
+            else{
+                alert("정확히 입력해주세요.")
+            }
+        }
+        else if(seceresult === false){
+            alert("취소했습니다.");
+        }
+    })
+    
 </script>

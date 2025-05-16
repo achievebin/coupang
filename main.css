@@ -1,0 +1,306 @@
+/* 전체 레이아웃 기본 */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* top-bar는 고정 위치 */
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    background: #f0f0f0;
+    z-index: 3;
+}
+
+/* top-bar 내부 section은 좌우 정렬 및 가로 배치 */
+.top-bar > section {
+    display: flex;
+    justify-content: space-between; /* 좌우 끝에 배치 */
+    align-items: center;            /* 세로 가운데 정렬 */
+    width: 980px;
+    margin: 0 auto;
+    font-size: 11px;
+}
+
+/* top-bar 내 ul 또는 menu를 가로 정렬 및 리스트 스타일 제거 */
+#headerMenu, #subscribeMenu, #iconmenu {
+    display: flex; /* 가로 배치 */
+    list-style: none; /* 점 또는 번호 제거 */
+    padding: 0;
+    margin: 0;
+}
+
+/* top-bar 내 li는 가로 정렬을 위해 inline-block 또는 flex 사용 가능 */
+#headerMenu li, #subscribeMenu li, #iconmenu li {
+    list-style: none; /* 리스트 스타일 제거 */
+    margin-right: 12px; /* 간격 조정 */
+}
+
+/* header 영역은 top-bar 아래에 위치 */
+header {
+    margin-top: 32px; /* top-bar 높이만큼 아래로 */
+    width: 100%;
+    position: relative; /* categoryBtn 위치 기준 */
+}
+
+/* search-form-wrap는 좌우 정렬, 내부 요소 배치 */
+.search-form-wrap {
+    display: flex;
+    justify-content: space-between; /* 좌우 끝에 배치 */
+    align-items: center;
+    width: 980px;
+    margin: 0 auto;
+    padding: 10px 0;
+    position: relative; /* 자식 absolute 위치 조정 가능 */
+}
+
+/* 좌측: logo 영역 */
+.search-form-wrap .logo {
+    display: flex;
+    align-items: center;
+}
+
+/* 검색창 영역 */
+.searchbar {
+    display: flex;
+    align-items: center;
+    border: 2px solid #4285f4;
+}
+
+/* iconmenu는 우측에 위치, 내부 a는 세로 배치 */
+#iconmenu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* categoryBtn은 search-form-wrap 좌측에 위치 */
+.categoryBtn {
+    position: absolute;
+    top: 32px; /* top-bar 높이 아래에 위치 */
+    left: 0;
+    width: 110px;
+    height: 115px;
+    background-color: #4285f4;
+    background-position: 0 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* categoryBtn 내부 button 스타일 */
+.categoryBtn button {
+    display: block;
+    margin-top: 73px;
+    color: #fff;
+    font-size: 13px;
+}
+
+/* a 내부의 span과 텍스트를 세로로 쌓이게 하는 CSS */
+#iconmenu a {
+    display: inline-flex;
+    flex-direction: column; /* 세로 배치 */
+    align-items: center; /* 가운데 정렬 */
+    text-decoration: none;
+    color: inherit;
+    padding: 0;
+    position: relative; /* badge 위치 기준 */
+}
+
+#iconmenu a span img {
+    display: block;
+    margin-bottom: 4px; /* 이미지와 텍스트 간격 */
+    max-width: 100px;
+    height: auto;
+}
+
+/* 뱃지 */
+.cart a {
+    position: relative;
+}
+
+/* em에 속한 숫자(0)를 우상단 붉은 원 안에 표시하는 스타일 */
+.cart a .badge {
+    position: absolute; /* 부모 위치 기준 */
+    top: -5px;          /* 위치 조정 */
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: red; /* 붉은 원 배경 */
+    color: white;
+    font-size: 12px;
+    border-radius: 50%; /* 원 모양 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/* 말풍선 기본 숨김, 아이디 선택자 수정 */
+#my-cart-preview {
+    position: absolute;
+    top: 100%; /* 또는 적절한 위치 조정 */
+    right: 0;
+    margin-top: 8px;
+    width: 250px; /* 적당한 너비 */
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    display: none; /* 기본 숨김 */
+    z-index: 100;
+}
+
+/* 말풍선 삼각형 (말풍선 꼬리) */
+#my-cart-preview::after {
+    content: "";
+    position: absolute;
+    top: -10px; /* 말풍선 위쪽 위치 */
+    right: 20px; /* 위치 조정 */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+/* 마우스 오버 시 보여주기 */
+li.cart:hover #my-cart-preview {
+    display: block;
+}
+
+/* 카테고리 메뉴 */
+#categoryMenu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* 스크롤 메뉴 감싸는 영역 */
+#scrollMenuContainer {
+    position: absolute;
+    top: calc(100% + 10px); /* search-form-wrap 아래에 위치 */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* 양 끝에 div 고정 */
+    align-items: center;
+}
+
+/* scrollMenu는 flex로 가로 정렬 */
+.scrollMenu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+}
+.scrollMenu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.scrollMenu li {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+#scrollMenuContainer .menuBtnLeft,
+#scrollMenuContainer .menuBtnRight {
+    position: relative;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#scrollMenuContainer .menuBtnLeft {
+    left: 0;
+}
+
+#scrollMenuContainer .menuBtnRight {
+    right: 0;
+}
+
+/* discovery-list는 grid로 영역 정리, 영역 이름 변경 및 columns, rows 지정 */
+.discovery-list {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 150px);
+    gap: 10px;
+}
+
+.discovery-list li img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* or 'cover' depending on the effect you want */
+    display: block;
+}
+
+.banner-list {
+    display: contents;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.discovery-item-0 { grid-column: 1 / 2; grid-row: 1 / 2; }
+.discovery-item-1 { grid-column: 2 / 3; grid-row: 1 / 2; }
+.discovery-item-2 { grid-column: 3 / 4; grid-row: 1 / 2; }
+.discovery-item-3 { grid-column: 1 / 2; grid-row: 2 / 3; }
+.discovery-item-4 { grid-column: 2 / 3; grid-row: 2 / 3; }
+.discovery-item-5 { grid-column: 3 / 4; grid-row: 2 / 3; }
+.discovery-item-6 { grid-column: 1 / 2; grid-row: 3 / 4; }
+.discovery-item-7 { grid-column: 2 / 3; grid-row: 3 / 4; }
+.discovery-item-8 { grid-column: 3 / 4; grid-row: 3 / 4; }
+
+/* 반응형 조정 */
+@media (max-width: 1024px) {
+    .top-bar > section,
+    .search-form-wrap {
+        max-width: 100%;
+        padding: 0 16px;
+    }
+
+    .categoryBtn {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* 스크롤 메뉴에 overflow-x 활성화 */
+    .scrollMenu {
+        overflow-x: auto;
+    }
+
+    /* discovery-list 모바일에서 한 줄씩 쌓기 */
+    .discovery-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 10px;
+    }
+
+    .discovery-item-0,
+    .discovery-item-1,
+    .discovery-item-2,
+    .discovery-item-3,
+    .discovery-item-4,
+    .discovery-item-5,
+    .discovery-item-6,
+    .discovery-item-7,
+    .discovery-item-8 {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+}

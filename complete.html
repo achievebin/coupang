@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>주문 완료</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #f6f6f6;
+    }
+
+    header {
+      background: #0078ff;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 3rem;
+      color: #28a745;
+      margin-bottom: 1rem;
+    }
+
+    .success-message {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .sub-message {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .order-summary {
+      text-align: left;
+      margin: 2rem 0;
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .order-summary h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+
+    .order-summary p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn-group button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .detail-btn {
+      background-color: #0078ff;
+      color: white;
+    }
+
+    .shop-btn {
+      background-color: #ff6000;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    주문 완료
+  </header>
+
+  <div class="container">
+    <div class="success-icon">✅</div>
+    <div class="success-message">주문이 완료되었습니다!</div>
+    <div class="sub-message">빠르고 안전하게 배송해드릴게요.</div>
+
+    <div class="order-summary">
+      <h3>주문 정보</h3>
+      <p><strong>주문번호:</strong> 20250515000123</p> <!-- 현재 시간 기입 추후 추가 -->
+      <p id="product-name"><strong>상품명:</strong> 네스카페 수프리모 커피믹스 200개입</p>
+      <p id="product-price"><strong>총 결제금액:</strong> 12,900원</p>
+      <p><strong>배송 예정일:</strong> 5월 16일 (목) </p> <!-- 1일 뒤 날짜 기입 추후 추가 -->
+      <p><strong>배송지:</strong> ㅇㅇ시 ㅇㅇ동 123 </p> <!-- 전에 입력한 주소 설정 추후 추가 -->
+    </div>
+
+    <div class="btn-group">
+      <button class="detail-btn">주문 상세 보기</button>
+      <button class="shop-btn">쇼핑 계속하기</button>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<script>
+  const product = window.sessionStorage.getItem("product");
+  const price = window.sessionStorage.getItem("p_price");
+  const pay_total = window.sessionStorage.getItem("pay_total");
+
+
+  document.getElementById("product-name").innerHTML = `<p id="product-name"><strong>상품명:</strong>${product}</p>`;
+  document.getElementById("product-price").innerHTML = `<p id="product-price"><strong>총 결제금액:</strong>${pay_total}원</p>`;
+
+</script>
