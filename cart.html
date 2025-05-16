@@ -183,7 +183,11 @@
 
     console.log(total);
 
-    document.getElementById("total").innerHTML = `<div id="total" class="total">총 합계: ${Number(total) + Number(delivery)}원</div>`;
+    document.getElementById("total").innerHTML = `
+                                                    <div id="total" class="total">총 상품 가격: ${Number(total)}원</div>
+                                                    <div id="total" class="total">총 배송비: ${Number(delivery)}원</div>
+                                                    <div id="total" class="total">총 합계: ${Number(total) + Number(delivery)}원</div>
+                                                `;
 
 
 </script>
