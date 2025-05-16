@@ -138,8 +138,7 @@
 
         </div>
 
-
-        <div class="total">총 합계: 0원</div>
+        <div id="total" class="total">배송비 : 3000원 총 합계: 0원</div>
 
         <div class="cart-actions">
             <button>주문하기</button>
@@ -154,23 +153,37 @@
 
     const cart_item = document.getElementById("cart-item");
 
-    for (let i = 0; cart_arr.length; i++) {
+    var total = 0;
+    const delivery = 3000;
+
+
+    for (let i = 0; i < cart_arr.length; i++) {
+
+        // 아마 중복 이름 값마다 count++하면 수량도 될 것 같다
+
         const card = document.createElement('div');
         card.innerHTML = `
-                                <div class="cart-item">
-                                <input type="checkbox" class="select" />
-                                <img src="${cart_arr[i].img}" alt="상품 이미지">
-                                <div class="cart-info">
-                                    <h4>${cart_arr[i].name}</h4>
-                                    <div class="price">${cart_arr[i].price}원</div>
+                            <div class="cart-item">
+                            <input type="checkbox" class="select" />
+                            <img src="${cart_arr[i].img}" alt="상품 이미지">
+                            <div class="cart-info">
+                                <h4>${cart_arr[i].name}</h4>
+                                <div class="price">${cart_arr[i].price}원</div>
+                            </div>
+                                <div class="quantity-control">
+                                    <button>-</button>
+                                    <input type="text" value="1" />
+                                    <button>+</button>
                                 </div>
-                                    <div class="quantity-control">
-                                        <button>-</button>
-                                        <input type="text" value="0" />
-                                        <button>+</button>
-                                    </div>
-                                </div>
+                            </div>
                                 `;
+        total = Number(total) + Number(cart_arr[i].price);
         cart_item.appendChild(card);
     }
+
+    console.log(total);
+
+    document.getElementById("total").innerHTML = `<div id="total" class="total">총 합계: ${Number(total) + Number(delivery)}원</div>`;
+
+
 </script>
