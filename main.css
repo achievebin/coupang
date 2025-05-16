@@ -2,6 +2,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 /* top-bar는 고정 위치 */
@@ -18,8 +19,8 @@ body {
 /* top-bar 내부 section은 좌우 정렬 및 가로 배치 */
 .top-bar > section {
     display: flex;
-    justify-content: space-between; /* 좌우 끝에 배치 */
-    align-items: center;            /* 세로 가운데 정렬 */
+    justify-content: space-between;
+    align-items: center;
     width: 980px;
     margin: 0 auto;
     font-size: 11px;
@@ -27,119 +28,271 @@ body {
 
 /* top-bar 내 ul 또는 menu를 가로 정렬 및 리스트 스타일 제거 */
 #headerMenu, #subscribeMenu, #iconmenu {
-    display: flex; /* 가로 배치 */
-    list-style: none; /* 점 또는 번호 제거 */
+    list-style: none;
     padding: 0;
     margin: 0;
-}
-
-/* top-bar 내 li는 가로 정렬을 위해 inline-block 또는 flex 사용 가능 */
-#headerMenu li, #subscribeMenu li, #iconmenu li {
-    list-style: none; /* 리스트 스타일 제거 */
-    margin-right: 12px; /* 간격 조정 */
-}
-
-/* header 영역은 top-bar 아래에 위치 */
-header {
-    margin-top: 32px; /* top-bar 높이만큼 아래로 */
-    width: 100%;
-    position: relative; /* categoryBtn 위치 기준 */
-}
-
-/* search-form-wrap는 좌우 정렬, 내부 요소 배치 */
-.search-form-wrap {
     display: flex;
-    justify-content: space-between; /* 좌우 끝에 배치 */
-    align-items: center;
+    gap: 10px;
+}
+
+/* 컨테이너 및 헤더 설정 */
+#container {
     width: 980px;
     margin: 0 auto;
-    padding: 10px 0;
-    position: relative; /* 자식 absolute 위치 조정 가능 */
 }
 
-/* 좌측: logo 영역 */
-.search-form-wrap .logo {
+/* 헤더는 flex 컨테이너 - 좌우 정렬 */
+.header {
+    display: flex;
+    padding-top: 32px; /* top-bar 높이만큼 패딩 추가 */
+    background-color: white;
+    align-items: stretch; /* 세로 꽉 채움 */
+    border-bottom: 1px solid #ddd;
+}
+
+/* A. 좌측 카테고리 버튼 */
+.categoryBtn {
+    width: 110px;
+    height: 115px;
+    background-color: #4285f4;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 13px;
 }
 
-/* 검색창 영역 */
-.searchbar {
+/* B+C 우측 영역 세로 배치 */
+.right-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative; /* 절대 위치 자식 기준 */
+}
+
+/* B. 검색폼 래퍼 - 가로 배치 */
+.search-form-wrap {
+    height: 70px; /* 높이를 명확히 줘서 top 계산에 도움 */
+    width: 100%;
     display: flex;
     align-items: center;
-    border: 2px solid #4285f4;
+    justify-content: space-between;
 }
 
-/* iconmenu는 우측에 위치, 내부 a는 세로 배치 */
+/* 로고 이미지 */
+.logo img {
+    height: 55px;
+}
+
+/* 검색폼 내 select, input */
+.searchbar fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.searchbar select,
+.searchbar input[type="text"] {
+    height: 30px;
+    font-size: 14px;
+    padding: 0 8px;
+}
+
+/* 검색 버튼 */
+.search-form-wrap button.search {
+    height: 34px;
+    padding: 0 12px;
+    background-color: #0071e3;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* 아이콘 메뉴 */
 #iconmenu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* 부모 ul에 세로 중앙 정렬 */
+}
+
+#iconmenu li {
+    display: flex;
+    min-height: 56px;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* badge 위치 조정 기준 */
+}
+
+/* 공통: 아이콘 메뉴의 a 태그는 flex column으로 아이콘과 텍스트 세로 정렬 */
+#iconmenu li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #444;
+    font-size: 13px;
+    position: relative; /* badge 기준 */
+    padding: 4px 8px; /* 터치 영역 확보 */
+}
+
+/* my-coupang a 수정 */
+.my-coupang a {
+    position: relative;
+    z-index: 5; /* top-bar(3)보다 위 */
+    min-height: 56px; /* 높이 확보 */
+    justify-content: center; /* 세로 중앙 정렬 */
+}
+
+/* my-coupang 아이콘 이미지 */
+.my-coupang-icon img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* cart a 수정: flex 정렬 및 badge 위치 기준 */
+.cart a {
+    position: relative; /* badge 위치 기준 */
+    display: flex;
+    align-items: center;
+    gap: 6px; /* 이미지와 텍스트 사이 간격 */
+    padding: 4px 8px;
+}
+
+/* cart 아이콘 이미지 크기 고정 */
+.cart a .cart-icon img {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* cart badge 위치 및 스타일 */
+.cart a em.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* iconmenu 내부 아이콘 이미지 크기 일괄 적용 */
+#iconmenu li .my-coupang-icon img,
+#iconmenu li .cart-icon img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0; /* 가로 마진 제거, 세로라서 필요없음 */
+}
+
+/* C. 스크롤 메뉴 컨테이너 */
+#scrollMenuContainer {
+    position: absolute;
+    top: 70px; /* 검색폼 높이 기준 바로 아래에 위치 */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    background-color: white;
+    z-index: 10;
+}
+
+/* 스크롤 메뉴 리스트 */
+.scrollMenu {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
 }
 
-/* categoryBtn은 search-form-wrap 좌측에 위치 */
-.categoryBtn {
-    position: absolute;
-    top: 32px; /* top-bar 높이 아래에 위치 */
-    left: 0;
-    width: 110px;
-    height: 115px;
-    background-color: #4285f4;
-    background-position: 0 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.scrollMenu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
 }
 
-/* categoryBtn 내부 button 스타일 */
-.categoryBtn button {
-    display: block;
-    margin-top: 73px;
-    color: #fff;
-    font-size: 13px;
+.scrollMenu li {
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    display: inline-block;
+    margin-right: 12px;
 }
 
-/* a 내부의 span과 텍스트를 세로로 쌓이게 하는 CSS */
-#iconmenu a {
-    display: inline-flex;
-    flex-direction: column; /* 세로 배치 */
-    align-items: center; /* 가운데 정렬 */
-    text-decoration: none;
-    color: inherit;
-    padding: 0;
-    position: relative; /* badge 위치 기준 */
-}
-
-#iconmenu a span img {
-    display: block;
-    margin-bottom: 4px; /* 이미지와 텍스트 간격 */
-    max-width: 100px;
-    height: auto;
-}
-
-/* 뱃지 */
-.cart a {
+/* 스크롤 메뉴 버튼 */
+#scrollMenuContainer .menuBtnLeft,
+#scrollMenuContainer .menuBtnRight {
     position: relative;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px 10px;
+    color: #444;
+    user-select: none;
+    flex-shrink: 0;
 }
 
-/* em에 속한 숫자(0)를 우상단 붉은 원 안에 표시하는 스타일 */
-.cart a .badge {
-    position: absolute; /* 부모 위치 기준 */
-    top: -5px;          /* 위치 조정 */
-    right: -5px;
-    width: 20px;
-    height: 20px;
-    background-color: red; /* 붉은 원 배경 */
-    color: white;
-    font-size: 12px;
-    border-radius: 50%; /* 원 모양 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    z-index: 10;
+#scrollMenuContainer .menuBtnLeft {
+    left: 0;
+}
+
+#scrollMenuContainer .menuBtnRight {
+    right: 0;
+}
+
+/* 카테고리 메뉴 */
+#categoryMenu {
+    display: none;
+    position: absolute;
+    top: 115px; /* categoryBtn 아래 위치 */
+    left: 0;
+    background: white;
+    width: 110px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+#categoryMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#categoryMenu li a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+#categoryMenu li a:hover {
+    background-color: #f0f0f0;
 }
 
 /* 말풍선 기본 숨김, 아이디 선택자 수정 */
@@ -174,65 +327,6 @@ li.cart:hover #my-cart-preview {
     display: block;
 }
 
-/* 카테고리 메뉴 */
-#categoryMenu {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-/* 스크롤 메뉴 감싸는 영역 */
-#scrollMenuContainer {
-    position: absolute;
-    top: calc(100% + 10px); /* search-form-wrap 아래에 위치 */
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* 양 끝에 div 고정 */
-    align-items: center;
-}
-
-/* scrollMenu는 flex로 가로 정렬 */
-.scrollMenu {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex: 1;
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-}
-.scrollMenu::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-}
-
-.scrollMenu li {
-    display: inline-block;
-    margin-right: 12px;
-}
-
-#scrollMenuContainer .menuBtnLeft,
-#scrollMenuContainer .menuBtnRight {
-    position: relative;
-    top: 0;
-    z-index: 10;
-    cursor: pointer;
-}
-
-#scrollMenuContainer .menuBtnLeft {
-    left: 0;
-}
-
-#scrollMenuContainer .menuBtnRight {
-    right: 0;
-}
-
 /* discovery-list는 grid로 영역 정리, 영역 이름 변경 및 columns, rows 지정 */
 .discovery-list {
     display: grid !important;
@@ -244,7 +338,7 @@ li.cart:hover #my-cart-preview {
 .discovery-list li img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* or 'cover' depending on the effect you want */
+    object-fit: contain;
     display: block;
 }
 
