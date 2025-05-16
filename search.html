@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="#">
-    <title>커피 검색 결과</title>
+    <title>쿠팡 검색 페이지</title>
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -160,6 +160,15 @@
     s_btn.addEventListener("click", function () {
         window.sessionStorage.setItem("search", input.value);
     });
+
+    input.addEventListener("keydown", function (e) {
+        if (event.keyCode === 13) {
+            e.preventDefault();
+            window.sessionStorage.setItem("search", input.value);
+            window.open("./search.html","_self");
+        }
+    });
+
 
     const data_arr = JSON.parse(window.localStorage.getItem("datas"));
 
