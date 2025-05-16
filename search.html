@@ -10,15 +10,20 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
             margin: 0;
-            background: #f8f8f8;
+            background: white;
         }
 
         header {
-            background-color: #0078ff;
+            background-color: white;
             color: white;
             padding: 1rem 2rem;
             font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        #logo {
+            width: 200px;
+            height: auto;
         }
 
         .container {
@@ -89,8 +94,12 @@
 
     <header>
         <div style="text-align: center;">
-            <img src="..\project_coupang\images\logo_coupang_w350.png" siz>
-            <input id="input" type="text" size="100px" style="padding: 7px">
+            <span>
+                <a href="./main.html">
+                    <img id="logo" src=".\images\logo_coupang_w350.png">
+                </a>
+            </span>
+            <input id="input" type="text" size="70px" style="height: 30px;">
             <a href="./search.html">
                 <button id="s_btn">검색</button>
             </a>
@@ -117,22 +126,22 @@
     var product = [{
         name: "커피1",
         price: 1000,
-        img: "https://via.placeholder.com/200x200?text=Coffee+1"
+        img: "./images/coffee1.png"
     },
     {
         name: "커피2",
         price: 1500,
-        img: "https://via.placeholder.com/200x200?text=Coffee+2"
+        img: "./images/coffee2.png"
     },
     {
         name: "빵1",
         price: 2500,
-        img: "https://via.placeholder.com/200x200?text=Bread+1"
+        img: "./images/bread1.png"
     },
     {
         name: "빵2",
         price: 3500,
-        img: "https://via.placeholder.com/200x200?text=Bread+2"
+        img: "./images/bread2.png"
 
     },
     ]
@@ -169,6 +178,7 @@
                 card.addEventListener("click", function () {
                     window.sessionStorage.setItem("product", data_arr[i].name);
                     window.sessionStorage.setItem("p_price", data_arr[i].price);
+                    window.sessionStorage.setItem("img", data_arr[i].img);
                     window.open("./product.html");
                 });
                 grid.appendChild(card);

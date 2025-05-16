@@ -10,7 +10,7 @@
     body {
         margin: 0;
         font-family: 'Noto Sans KR', sans-serif;
-        background-color: #f6f6f6;
+        background-color: white;
     }
 
     header {
@@ -19,6 +19,12 @@
         padding: 1rem 2rem;
         font-size: 1.5rem;
         font-weight: bold;
+    }
+
+    #logo {
+        width: 200px;
+        height: auto;
+        margin-top: 20px;
     }
 
     .product-container {
@@ -114,13 +120,15 @@
 
 <body>
 
-    <header>
-        쿠팡 상품 상세
-    </header>
+    <span>
+        <a href="./main.html">
+            <img id="logo" src=".\images\logo_coupang_w350.png" style="margin-left: 350px;">
+        </a>
+    </span>
 
     <div class="product-container">
         <div class="product-image">
-            <img src="https://via.placeholder.com/400x400?text=Coffee+Product" alt="커피 상품 이미지">
+            <img id="product-img">
         </div>
         <div class="product-details">
             <div id="product-name" class="product-title"></div>
@@ -144,14 +152,13 @@
 
     const product = window.sessionStorage.getItem("product");
     const price = window.sessionStorage.getItem("p_price");
+    const img = window.sessionStorage.getItem("img");
 
     const p_name = document.createElement("text");
     const p_price = document.createElement("text");
     const li = document.createElement("li");
 
-    p_name.textContent = product;
-    p_price.textContent = price;
-
-    document.getElementById("product-name").innerHTML = `<div id="product-name" class="product-title">${p_name.textContent}</div>`;
-    document.getElementById("product-price").innerHTML = `<div id="product-name" class="product-title">${p_price.textContent}원</div>`;
+    document.getElementById("product-name").textContent = product;
+    document.getElementById("product-price").textContent = price + "원";
+    document.getElementById("product-img").src = img;
 </script>

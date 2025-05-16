@@ -8,17 +8,23 @@
   <style>
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background-color: #f6f6f6;
+      background-color: white;
       margin: 0;
       padding: 0;
     }
 
     header {
-      background-color: #0078ff;
+      background-color: white;
       color: white;
       padding: 1rem 2rem;
       font-size: 1.5rem;
       font-weight: bold;
+    }
+
+    #logo {
+      width: 200px;
+      height: auto;
+      margin-top: 20px;
     }
 
     .container {
@@ -100,7 +106,9 @@
 <body>
 
   <header>
-    쿠팡 결제
+    <a href="./main.html">
+      <img id="logo" src=".\images\logo_coupang_w350.png" style="margin-left: 350px;">
+    </a>
   </header>
 
   <div class="container">
@@ -174,7 +182,7 @@
   document.getElementById("product-total").innerHTML = `<div id="product-total" class="total">${pay_total}원</div>`;
   document.getElementById("pay-button").innerHTML = `<button id="pay-button" class="pay-button">${pay_total}원 결제하기</button>`;
 
-  window.sessionStorage.setItem("pay_total",pay_total);
+  window.sessionStorage.setItem("pay_total", pay_total);
 
   // console.log(document.getElementById("product-total").innerText);
 
