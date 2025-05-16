@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Document</title>
-    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./main.css"/>
 </head>
 <body>
     <!-- 상단 바 영역 -->
@@ -27,17 +27,30 @@
         <header class="header">
             <!-- 좌측 카테고리 버튼 -->
             <div class="categoryBtn">
-                <image src="./images/icons8-menu.svg" alt="메뉴아이콘콘">
+                <image src="./images/icons8-menu.svg" alt="메뉴아이콘">
                 <button id="categoryToggleBtn">카테고리</button>
             </div>
             <!-- 카테고리 메뉴 -->
             <nav id="categoryMenu" style="display: none;">
                 <ul>
-                    <li><a href="#" onclick="event.preventDefault();">가전제품</a></li>
-                    <li><a href="#" onclick="event.preventDefault();">패션의류</a></li>
-                    <li><a href="#" onclick="event.preventDefault();">식품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">패션의류/잡화</a></li>
                     <li><a href="#" onclick="event.preventDefault();">뷰티</a></li>
-                    <li><a href="#" onclick="event.preventDefault();">도서</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">출산/유아동</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">식품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">주방용품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">생활용품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">홈인테리어</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">기전디지털</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">스포츠/레저</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">자동차용품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">도서/음반/DVD</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">완구/취미</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">문구/오피스</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">반려동물용품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">헬스/건강식품</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">국내여행</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">해외여행</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">문구/오피스</a></li>
                 </ul>
             </nav>
             <div class="right-section">
@@ -46,7 +59,7 @@
                     <!-- 쿠팡 로고 -->
                     <span class="logo">
                         <a href="./main.html">
-                            <img src="./images/logo_coupang_w350.png" alt="쿠팡로고" />
+                            <img src="./images/logo_coupang_w350.png" alt="쿠팡로고"/>
                         </a>
                     </span>
                     <!-- 검색 폼 영역 -->
@@ -57,8 +70,8 @@
                                 <div class="select-category"></div>
                                 <select id="selectCategories">
                                     <option value="">전체 카테고리</option>
-                                    <option value="electronics">가전제품</option>
-                                    <option value="fashion">패션의류</option>
+                                    <option value="fashion">패션의류/잡화</option>
+                                    <option value="beauty">뷰티</option>
                                 </select>
                                 <input
                                     type="text"
@@ -74,16 +87,16 @@
                         <li class="my-coupang">
                             <a href="./mypage.html">
                                 <span class="my-coupang-icon">
-                                    <img src="./images/8666609_user_icon.png" />
+                                    <img src="./images/8666609_user_icon.png" alt="이용자아이콘"/>
                                 </span>
                                 <span class="my-coupang-title">마이쿠팡</span>
                             </a>
                             <p class="my-coupang-menu"><span class="wrapper"></span></p>
                         </li>
                         <li class="cart">
-                            <a href="#">
+                            <a href="./cart.html">
                                 <span class="cart-icon">
-                                    <img src="./images/326700_cart_shopping_icon.png" />
+                                    <img src="./images/326700_cart_shopping_icon.png" alt="카트아이콘"/>
                                 </span>
                                 <span>장바구니</span>
                                 <em class="badge">0</em>
@@ -112,6 +125,7 @@
                         <li>골드박스</li>
                         <li>이달의신상</li>
                         <li>판매자특가</li>
+                        <li>와우회원할인</li>
                     </ul>
                     <div class="menuBtnRight">▶</div>
                 </div>
@@ -125,16 +139,16 @@
                     <div class="discovery-list">
                         <ul class="banner-list">
                             <li class="discovery-item-0">
-                                <a><img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지1"/></a>
+                                <a><img src="./images/bread1.png" alt="빵 이미지1"/></a>
                             </li>
                             <li class="discovery-item-1">
-                                <a><img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지2"/></a>
+                                <a><img src="./images/bread2.png" alt="빵 이미지2"/></a>
                             </li>
                             <li class="discovery-item-2">
-                                <a><img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지3"/></a>
+                                <a><img src="./images/coffee1.png" alt="커피 이미지3"/></a>
                             </li>
                             <li class="discovery-item-3">
-                                <a><img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지4"/></a>
+                                <a><img src="./images/coffee2.png" alt="커피 이미지4"/></a>
                             </li>
                             <li class="discovery-item-4">
                                 <a><img src="./images/istockphoto-placeholder.jpg" alt="상품 이미지5"/></a>
